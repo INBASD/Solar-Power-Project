@@ -7,11 +7,6 @@ public class TestMainClass {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		//this is a comment
-		//hey, i'm changing stuff!
-		
-		int aNumber = 1;
 
 	}
 
