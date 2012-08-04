@@ -12,7 +12,6 @@ public class TestMainClass {
 		//hey, i'm changing stuff!
 		
 		int aNumber = 1;
-		int bNumber = aNumber + 1;
 
 	}
 
