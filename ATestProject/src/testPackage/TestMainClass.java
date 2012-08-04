@@ -11,7 +11,7 @@ public class TestMainClass {
 		//this is a comment
 		//hey, i'm changing stuff!
 		
-		System.out.println("Hellow World!");
+		System.out.println("Hello World 2 Electric Boogaloo!");
 
 	}
 
