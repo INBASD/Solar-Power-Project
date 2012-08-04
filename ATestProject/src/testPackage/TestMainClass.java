@@ -12,7 +12,7 @@ public class TestMainClass {
 		//hey, i'm changing stuff!
 		
 		System.out.println("Hello World 2 Electric Boogaloo!");
-		System.out.println("and additional updates.");
+		System.out.println("and additional updates.")
 
 	}
 
