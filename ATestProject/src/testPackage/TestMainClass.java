@@ -11,8 +11,7 @@ public class TestMainClass {
 		//this is a comment
 		//hey, i'm changing stuff!
 		
-		int aNumber = 1;
-		int bNumber = aNumber + 1;
+		System.out.println("Hellow World!");
 
 	}
 
