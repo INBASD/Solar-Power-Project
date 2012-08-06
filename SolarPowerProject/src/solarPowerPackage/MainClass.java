@@ -1,6 +1,6 @@
-package testPackage;
+package solarPowerPackage;
 
-public class TestMainClass {
+public class MainClass {
 
 	/**
 	 * @param args
