@@ -53,24 +53,28 @@ public class InsolationCalculation {
 		sunriseHourAngle = SunriseHourAngle(latitude, declination);
 		
 		//the solar hour, based on the angle
-		sunriseHour = HourAngleToHour(sunriseHourAngle);
+		sunriseHour = -(HourAngleToHour(sunriseHourAngle) - 12);
 		
 		double averageHourlyInsolation = 0;
 		
 		//the number of hours per simulation step, given number of hours between sunrise and midday.
-		double simulationStepLength = (12 - sunriseHour) / dailySimulationSteps;
+		double simulationStepLength = (12 + sunriseHour) / dailySimulationSteps;
 		
 		for (int i = 1; i <= dailySimulationSteps; i++){
 			
 			averageHourlyInsolation = (averageHourlyInsolation + this.HourInsolaton(latitude, (i * simulationStepLength), day)) / 2;
+			//System.out.println(averageHourlyInsolation);
 			
 		}
 		
 		//total daylight hours, time before midday + time after midday is the same as time between sunup and sundown, 
 		// which is the same as between sunup and midday * 2.
-		double totalDaylightHours = (0 - sunriseHour) * 2;
+		double totalDaylightHours = -sunriseHour * 2;
 		
 		double totalDailyInsolation = totalDaylightHours * averageHourlyInsolation;
+		
+		//System.out.println("Total Daylight Hours: " + totalDaylightHours);
+		//System.out.println("Average insolation: " + averageHourlyInsolation);
 		
 		return totalDailyInsolation;
 	}
@@ -83,6 +87,7 @@ public class InsolationCalculation {
 		double yearlyInsolation = 0;
 		for (int i = 1; i <= 365; i++){
 			yearlyInsolation = yearlyInsolation + DailyInsolation(latitude, i);
+			//System.out.println(yearlyInsolation);
 		}
 		
 		double simulationInsolation = yearlyInsolation * simulationLength;
@@ -146,7 +151,7 @@ public class InsolationCalculation {
 	
 	public double SunriseHourAngle(double latitude, double declination){
 		double latitudeRadians = DegreesToRadians(latitude);
-		double sunriseHourAngle = -(Math.acos(-Math.tan(latitudeRadians) * Math.tan(declination)));
+		double sunriseHourAngle = (Math.acos(-Math.tan(latitudeRadians) * Math.tan(declination)));
 		
 		return sunriseHourAngle;
 	}
