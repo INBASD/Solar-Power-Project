@@ -2,48 +2,32 @@ package solar.power.calculator.android;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.*;
 
 public class RegionInformation extends Activity {
-
+	public final static String EXTRA_MESSAGE = "solar.power.calculator.android.MESSAGE";
 	int counter;
 	
-	Button add, sub;
-	TextView display;
+	Button calc;
+	EditText lat, year;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        counter = 0;
-        add = (Button) findViewById(R.id.bAdd);
-        sub = (Button) findViewById(R.id.bsub);
-        display = (TextView) findViewById(R.id.tvDisplay);
-        
-        add.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				counter++;
-				setTextdisp(counter);
-			}
-        });
-        
-        sub.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				counter--;
-				setTextdisp(counter);
-			}
-		});
-        
+        setContentView(R.layout.activity_main);       
     }
 	
-	public void setTextdisp(int i)
-	{
-		display.setText("Your Total is " + i);
+	public void calculate(View view){
+		lat  = (EditText)findViewById(R.id.entLat);
+        year = (EditText)findViewById(R.id.entYears);
+        InsolationCalculation calcu = new InsolationCalculation();
+		double tot = calcu.TotalSolarInsolation(Double.parseDouble(lat.getText().toString()), 
+				Integer.parseInt(year.getText().toString()));
+		Intent intent = new Intent(this, Displayresults.class);
+		
+		intent.putExtra(EXTRA_MESSAGE, Double.toString(tot));
+		startActivity(intent);
 	}
 }

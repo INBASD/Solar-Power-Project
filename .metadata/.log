@@ -3544,3 +3544,18 @@ Contains: Could not delete: C:\Users\Lars's PC\Documents\GitHub\Solar-Power-Proj
 !MESSAGE Could not delete: C:\Users\Lars's PC\Documents\GitHub\Solar-Power-Project\Solar power calculator android\bin\classes\solar\power.
 !SUBENTRY 5 org.eclipse.core.filesystem 4 273 2012-08-27 18:21:18.893
 !MESSAGE Could not delete: C:\Users\Lars's PC\Documents\GitHub\Solar-Power-Project\Solar power calculator android\bin\classes\solar.
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2012-08-27 20:47:40.650
+!MESSAGE activity_main.xml: "Left" in attribute "gravity" is not a valid value
+
+!ENTRY com.android.ide.eclipse.adt 2 0 2012-08-27 20:49:53.041
+!MESSAGE activity_main.xml: "Left" in attribute "gravity" is not a valid value
+
+!ENTRY org.eclipse.ui 4 4 2012-08-27 22:12:06.093
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.ProblemView.
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-08-27 22:42:55.658
+!MESSAGE Warning: Ignoring name conflict in resource file for name hello_world
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-08-27 22:42:55.659
+!MESSAGE Warning: Ignoring name conflict in resource file for name menu_settings
