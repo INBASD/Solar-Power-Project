@@ -1,0 +1,9 @@
+package solar.power.calculate.android;
+
+import android.view.View;
+
+public class MainActivity {
+	public void sendMessage(View view){
+		Intent intent = new Intent(this, DisplayMessageActivity.class);
+	}
+}

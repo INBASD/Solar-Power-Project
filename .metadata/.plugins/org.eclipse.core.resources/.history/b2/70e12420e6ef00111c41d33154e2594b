@@ -1,0 +1,7 @@
+package solar.power.calculate.android;
+
+public class MainActivity {
+	public void sendMessage(View view){
+		
+	}
+}
