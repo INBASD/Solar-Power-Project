@@ -1,0 +1,17 @@
+package solar.power.calculator.android;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.os.Bundle;
+
+public class Splash extends Activity{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+	}
+	
+	
+	
+}
