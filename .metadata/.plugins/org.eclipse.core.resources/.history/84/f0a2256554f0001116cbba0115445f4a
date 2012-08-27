@@ -26,19 +26,14 @@ public class RegionInformation extends Activity {
     }
 	
 	public void calculate(View view){
-		//Grab the values from the input box's
 		lat  = (EditText)findViewById(R.id.entLat);
         year = (EditText)findViewById(R.id.entYears);
-        //Instantiate the InsolationCalculation class
         InsolationCalculation calcu = new InsolationCalculation();
-        //Calculate the insolation, The text values had to be parsed as doubles and ints.
 		double tot = calcu.TotalSolarInsolation(Double.parseDouble(lat.getText().toString()), 
 				Integer.parseInt(year.getText().toString()));
-		//Create a new intent
 		Intent intent = new Intent(this, Displayresults.class);
-		//Pass the Double as a string to the new intent.
+		
 		intent.putExtra(EXTRA_MESSAGE, Double.toString(tot));
-		//Start the activity
 		startActivity(intent);
 	}
 }
