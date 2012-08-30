@@ -156,5 +156,35 @@ public class InsolationCalculation {
 		return sunriseHourAngle;
 	}
 	
+	//CALCULATE YEARLY SAVINGS
+	/*
+	 * Given
+	 * 1) latitude
+	 * 2) solar panel area
+	 * 3) energy cost ($/KWhour)
+	 * 4) Energy usage(watt hours)
+	 * 5) tarrif for energy sold to grid ($/KWhour)
+	 * 6) cloud cover percentage
+	 * calculate: money saved every year by using solar panel.
+	 * 
+	 * This function does not calculate when the user breaks even.
+	 * 
+	 * 1) solar insolation (latitude) * cloud cover * solar panel area = total W hours produced.
+	 * 2) energy cost = usage * energy rate.
+	 * 3) Daylight energy gross = produced * tarrif.
+	 * 4) yearly profit = daylight gross - cost.
+	 * 
+	 * Sorry about the monolithic method with 7 arguments.
+	 */
+	
+	public double TotalYearlyProfit(double latitude, double solarPanelArea, double energyCost, double tariff, double energyUsage, double cloudCoverPercentage){
+		double actualWattHours = (TotalSolarInsolation(latitude, 1) * cloudCoverPercentage * solarPanelArea)/1000; //convert to kilowatt hours
+		double totalEnergyCost = energyUsage * energyCost;
+		double moneyEarnedFromProduction = actualWattHours * tariff;
+		double profit = moneyEarnedFromProduction - totalEnergyCost;
+		
+		return profit;
+	}
+	
 	
 }

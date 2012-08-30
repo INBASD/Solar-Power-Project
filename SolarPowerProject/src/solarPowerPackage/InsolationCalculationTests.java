@@ -137,4 +137,18 @@ public class InsolationCalculationTests {
 		}
 	}
 	
+	@Test
+	public void exampleProfitCalculation(){
+		double latitude = 28;
+		double panelArea = 10;
+		double cloudCover = 0.5;
+		double tariff = 0.25378;
+		double energyCost = 0.25378;
+		double energyUsage = 6500;
+		
+		double profit = calculator.TotalYearlyProfit(latitude, panelArea, energyCost, tariff, energyUsage, cloudCover);
+		
+		System.out.print(profit);
+	}
+	
 }
