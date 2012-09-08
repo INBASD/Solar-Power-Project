@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">Solar Power calculator</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Solar Calculator</string>
+    <string name="enterLat">Enter Your Latitude</string>
+    <string name="terrif">Enter Terrif</string>
+    <string name="bcalc">Calculate!</string>
+    <string name="title_activity_displayresults">DisplayResults</string>
+    <string name="cloudcvr">Averate Cloud Cover Percentage</string>
+
+</resources>

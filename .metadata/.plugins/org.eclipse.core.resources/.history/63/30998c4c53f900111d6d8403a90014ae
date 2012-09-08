@@ -1,0 +1,60 @@
+package solar.power.calculator.android;
+
+import android.app.ListActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class Menu extends ListActivity{
+	
+	/*
+	 * Array of Strings representing Class Names.
+	 * This will allow easy upates of the menu.
+	 */
+	String  classes[] = {"RegionInformation", "PanelInfomation", "Calculate"};
+	/*
+	 * Array of strings to represent text in the menu
+	 */
+	String  names[] = {"Region Information", "Panel Information", "Calculate"};
+	
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 * Set the List Menu
+	 */
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setListAdapter(new ArrayAdapter<String>(Menu.this, android.R.layout.simple_list_item_1, names));
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	 * When a list item is selected, the starts a new activity with the corrisponding class.
+	 */
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		
+		super.onListItemClick(l, v, position, id);
+		//Get the name of class
+		String localStr = classes[position];
+		try{
+			//Create a class using the string representation of the class name.
+			Class intentClass = Class.forName("solar.power.calculator.android."+localStr);
+			//Create an intent of the class
+			Intent intent = new Intent(Menu.this, intentClass);
+			//Start the new activity
+			startActivity(intent);
+		}catch (ClassNotFoundException e)
+		{
+			//If you have come to here, you'v fucked up somewhere.
+			e.printStackTrace();
+		}
+	}
+	
+}

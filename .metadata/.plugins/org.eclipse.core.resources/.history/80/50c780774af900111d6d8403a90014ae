@@ -1,0 +1,18 @@
+package solar.power.calculator.android;
+
+public class Datastore {
+	
+	 private double lat, spa, ec, t, eu, ccp;
+	
+	public Datastore(){
+		
+	}
+	
+	public void setinfogroupOne(double lat, doule t, double ccp){
+		this.lat = lat; this.t = t; this.ccp = ccp;
+	}
+	
+	public void setinfogroupTwo(double spa, double eu, ){
+		
+	}
+}

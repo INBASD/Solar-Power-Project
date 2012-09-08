@@ -16,38 +16,42 @@
             android:name=".Splash"
             android:label="@string/title_activity_main" >
             <intent-filter>
+                
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                
             </intent-filter>
         </activity>
         <activity
             android:name=".RegionInformation"
             android:label="@string/title_activity_main" >
             <intent-filter>
-                <action android:name="solar.power.calculator.android.STARTINGPOINT" />
-
+                
+                <action android:name="android.support.PARENT_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
+                
             </intent-filter>
         </activity>
         <activity
-            android:name="Menu"
+            android:name=".Menu"
             android:label="@string/title_activity_main" >
             <intent-filter>
+                
                 <action android:name="solar.power.calculator.android.MENU" />
-
                 <category android:name="android.intent.category.DEFAULT" />
+                
             </intent-filter>
         </activity>
         <activity
             android:name=".Displayresults"
             android:label="@string/title_activity_displayresults" >
             <intent-filter>
-                <action android:name="android.support.PARENT_ACTIVITY" />
-
+                
+                <action android:name="android.support.MAIN" />
                 <category android:name="solar.power.calculator.android.RegionInformation" />
+                
             </intent-filter>
-        </activity>
+        </activity>        
     </application>
 
 </manifest>

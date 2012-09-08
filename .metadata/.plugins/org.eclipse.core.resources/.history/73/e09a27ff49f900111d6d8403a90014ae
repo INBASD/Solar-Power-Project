@@ -1,0 +1,11 @@
+package solar.power.calculator.android;
+
+public class Datastore {
+	
+	int lat, spa, eg, t, eu, ccp;
+	
+	public void Datastore(){
+		
+	}
+
+}

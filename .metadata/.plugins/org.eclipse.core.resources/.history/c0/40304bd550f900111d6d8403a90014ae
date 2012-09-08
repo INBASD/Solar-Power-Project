@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/enterLat"
+        android:textSize="20dp"
+        android:layout_gravity="left"
+        android:gravity="left"
+        />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:inputType="numberDecimal"
+        android:id="@+id/entLat"
+        />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/entYear"
+        android:textSize="20dp" 
+        android:layout_gravity="left"
+        android:gravity="left"
+        />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:inputType="number"
+        android:id="@+id/entYears"
+        />
+
+		
+	   <Button
+	       android:layout_width="250dp"
+	       android:layout_height="wrap_content"
+	       android:text="@string/bcalc"
+	       android:layout_gravity="left"
+	       android:textSize="20dp"
+	       android:id="@+id/calc"
+	       android:onClick="calculate"
+	       />
+
+</LinearLayout>

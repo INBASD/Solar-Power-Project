@@ -7,13 +7,15 @@ import android.view.View;
 import android.widget.*;
 
 public class RegionInformation extends Activity {
-	public final static String EXTRA_MESSAGE = "solar.power.calculator.android.MESSAGE";
+	public final static String EXTRA_MESSAGE = "solar.power.calculator.android.DATASTORE";
 
 	/*
 	 * sorta need them here, sorta dont, not sure yet.
 	 */
 	Button calc;
-	EditText lat, year;
+	EditText lat, terrif, cloudcvr;
+	Datastore data;
+	Intent intent;
 	
 	/*
 	 * (non-Javadoc)
@@ -22,22 +24,31 @@ public class RegionInformation extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);       
+        setContentView(R.layout.activity_main);      
+        intent = getIntent();
+        Bundle b = this.getIntent().getExtras();
+        if(b!=null)
+        {
+        	data = (Datastore) b.getSerializable(Datastore.EXTRA_MESSAGE);
+        }
     }
 	
 	public void calculate(View view){
 		//Grab the values from the input box's
 		lat  = (EditText)findViewById(R.id.entLat);
-        year = (EditText)findViewById(R.id.entYears);
-        //Instantiate the InsolationCalculation class
-        InsolationCalculation calcu = new InsolationCalculation();
-        //Calculate the insolation, The text values had to be parsed as doubles and ints.
-		double tot = calcu.TotalSolarInsolation(Double.parseDouble(lat.getText().toString()), 
-				Integer.parseInt(year.getText().toString()));
+		terrif = (EditText)findViewById(R.id.terrif);
+		cloudcvr = (EditText)findViewById(R.id.cloudcvr);
+        
+        data.setinfogroupOne(Double.parseDouble(lat.getEditableText().toString()),
+        					 Double.parseDouble(terrif.getEditableText().toString()),
+        					 Double.parseDouble(cloudcvr.getEditableText().toString()));
 		//Create a new intent
-		Intent intent = new Intent(this, Displayresults.class);
+        intent = new Intent();
+        Bundle b = new Bundle();
+        b.putSerializable(Datastore.EXTRA_MESSAGE, data);
 		//Pass the Double as a string to the new intent.
-		intent.putExtra(EXTRA_MESSAGE, Double.toString(tot));
+        intent.putExtras(b);
+        intent.setClass(this, Menu.class);
 		//Start the activity
 		startActivity(intent);
 	}

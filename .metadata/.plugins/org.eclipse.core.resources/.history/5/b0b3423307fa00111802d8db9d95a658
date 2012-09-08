@@ -1,0 +1,75 @@
+package solar.power.calculator.android;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+
+/*
+ * Class to manage the splash screen
+ */
+public class Splash extends Activity{
+	
+	public MediaPlayer splashSound;
+	
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 * Overridden method to create the Splash Screen Activity
+	 */
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.splash);
+		
+		/*
+		 * Initiate the splash screen sound
+		 */
+		splashSound = MediaPlayer.create(Splash.this, R.raw.splash);
+		splashSound.start();
+		
+		/*
+		 * Create the timer thread to time the duration of splash screen
+		 */
+		Thread timer = new Thread(){
+			public void run(){
+				try{
+					/*
+					 * make the thread sleep for 5 seconds
+					 */
+					sleep(5000);
+				} catch(InterruptedException e)
+				{
+					e.printStackTrace();
+				}finally{
+					/*
+					 * Start the Menu Activity
+					 */
+					Intent intent = new Intent("solar.power.calculator.android.MENU");
+					startActivity(intent);
+				}
+			}
+		};
+		//Start the timer thread
+		 timer.start();	
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onPause()
+	 * Override the onPause method to release the resources used by the Splash Activity
+	 * This prevents the Splash Screen from being accessible by pressing back after reaching the
+	 * next activity.
+	 */
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		//Stop the sound
+		splashSound.release();
+		//Destroy the Activity
+		finish();
+	}
+	
+}
