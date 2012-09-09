@@ -46,7 +46,7 @@ public class InsolationCalculation {
 		return this.totalSimulationProfit;
 	}
 	
-	int getBreakEvenYear(){
+	int GetBreakEvenYear(){
 		return this.breakEvenYear;
 	}
 	

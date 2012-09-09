@@ -172,7 +172,7 @@ public class InsolationCalculationTests {
 		System.out.println("Savings (year): " + calculator.GetYearlyProfit());
 		System.out.println("Savings (simulation): " + calculator.GetTotalProfit());
 		System.out.println("Return on investment after simulation period: " + calculator.GetROI());
-		System.out.println("Break even year: " + calculator.getBreakEvenYear());
+		System.out.println("Break even year: " + calculator.GetBreakEvenYear());
 		
 	}
 	
