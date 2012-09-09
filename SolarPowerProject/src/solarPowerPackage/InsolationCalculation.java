@@ -17,12 +17,12 @@ public class InsolationCalculation {
 	private static int solarradiation = 1333;
 	private static int dailySimulationSteps = 10;
 	
-	double totalElectricityGeneration = 0;//electricity generation
-	double yearlyElectricityGeneration = 0;
-	double yearlyProfit = 0;//yearly profit
-	double ROI = 0;//return on investment after X years
-	double totalSimulationProfit = 0;
-	int breakEvenYear = 0;
+	double totalElectricityGeneration = -1;//electricity generation
+	double yearlyElectricityGeneration = -1;
+	double yearlyProfit = -1;//yearly profit
+	double ROI = -1;//return on investment after X years
+	double totalSimulationProfit = -1;
+	int breakEvenYear = -1;
 	
 	double GetElectricityGeneration(){
 		//returns the electricity generation of the system in KW
