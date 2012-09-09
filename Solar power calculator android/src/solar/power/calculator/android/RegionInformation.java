@@ -24,7 +24,7 @@ public class RegionInformation extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);      
+        setContentView(R.layout.regional_info);      
         intent = getIntent();
         Bundle b = this.getIntent().getExtras();
         if(b!=null)
@@ -35,9 +35,9 @@ public class RegionInformation extends Activity {
 	
 	public void calculate(View view){
 		//Grab the values from the input box's
-		lat  = (EditText)findViewById(R.id.entLat);
-		terrif = (EditText)findViewById(R.id.terrif);
-		cloudcvr = (EditText)findViewById(R.id.cloudcvr);
+		lat  		= (EditText)findViewById(R.id.entLat);
+		terrif 		= (EditText)findViewById(R.id.terrif);
+		cloudcvr 	= (EditText)findViewById(R.id.cloudcvr);
         
         data.setinfogroupOne(Double.parseDouble(lat.getEditableText().toString()),
         					 Double.parseDouble(terrif.getEditableText().toString()),
@@ -51,5 +51,12 @@ public class RegionInformation extends Activity {
         intent.setClass(this, Menu.class);
 		//Start the activity
 		startActivity(intent);
+	}
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		
+		finish();
 	}
 }

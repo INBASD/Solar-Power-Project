@@ -26,6 +26,9 @@ public class Menu extends Activity{
 	Datastore data;
 	Button areaInfo, pnlInfo;
 	
+	public Menu(){
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -35,7 +38,7 @@ public class Menu extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
-		
+		/*
 		areaInfo = (Button)findViewById(R.id.button1);
 		pnlInfo = (Button)findViewById(R.id.button2);
 		
@@ -48,7 +51,7 @@ public class Menu extends Activity{
 		else
 			data = new Datastore();
 		
-		setup();
+		setup();*/
 	}
 	
 		/*
@@ -104,18 +107,33 @@ public class Menu extends Activity{
 	
 	
 	public void pnlInfo(View v){
-		
-		
+		Intent intent = new Intent(this, PanelInfo.class);
+		Bundle b = new Bundle();
+		b.putSerializable(Datastore.EXTRA_MESSAGE, this.data);
+		intent.putExtras(b);
+		startActivity(intent);
 	}
 	
 	public void areaInfo(View v){
 		Intent intent = new Intent(this, RegionInformation.class);
 		Bundle b = new Bundle();
-		b.putSerializable(Datastore.EXTRA_MESSAGE, data);
+		b.putSerializable(Datastore.EXTRA_MESSAGE, this.data);
 		intent.putExtras(b);
-		
 		startActivity(intent);
 	}
+	
+	@Override
+    public void onResume(){
+		super.onResume();
+		Bundle b = this.getIntent().getExtras();
+		if(b!=null)
+			data = (Datastore) b.getSerializable(Datastore.EXTRA_MESSAGE);
+		else
+			data = new Datastore();
+		
+		setup();
+    	
+    }
 	
 	
 	/*
@@ -126,9 +144,8 @@ public class Menu extends Activity{
 	 * next activity.
 	 */
 	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
+	protected void onStop() {
+		super.onStop();
 		finish();
 	}
 	
