@@ -53,7 +53,7 @@ public class InsolationCalculationTests {
 		
 		double totalInsolation = calculator.TotalSolarInsolation(testLatitude, simulationLength);
 		
-		System.out.println(totalInsolation);
+		//System.out.println(totalInsolation);
 
 	}
 	
@@ -64,7 +64,7 @@ public class InsolationCalculationTests {
 		
 		double totalInsolation = calculator.TotalSolarInsolation(testLatitude, simulationLength);
 		
-		System.out.println(totalInsolation);
+		//System.out.println(totalInsolation);
 
 	}
 	
@@ -75,7 +75,7 @@ public class InsolationCalculationTests {
 		
 		double totalInsolation = calculator.TotalSolarInsolation(testLatitude, simulationLength);
 		
-		System.out.println(totalInsolation);
+		//System.out.println(totalInsolation);
 
 	}
 	
@@ -86,7 +86,7 @@ public class InsolationCalculationTests {
 		
 		double totalInsolation = calculator.TotalSolarInsolation(testLatitude, simulationLength);
 		
-		System.out.println(totalInsolation);
+		//System.out.println(totalInsolation);
 
 	}
 	
@@ -97,7 +97,7 @@ public class InsolationCalculationTests {
 		
 		double totalInsolation = calculator.TotalSolarInsolation(testLatitude, simulationLength);
 		
-		System.out.println(totalInsolation);
+		//System.out.println(totalInsolation);
 
 	}
 	
@@ -141,14 +141,39 @@ public class InsolationCalculationTests {
 	public void exampleProfitCalculation(){
 		double latitude = 28;
 		double panelArea = 10;
-		double cloudCover = 0.5;
+		double cloudCover = 0.2;
 		double tariff = 0.25378;
 		double energyCost = 0.25378;
 		double energyUsage = 6500;
+		double panelEfficiency = 0.25;
 		
-		double profit = calculator.TotalYearlyProfit(latitude, panelArea, energyCost, tariff, energyUsage, cloudCover);
+		double profit = calculator.TotalYearlyProfit(latitude, panelArea, energyCost, tariff, energyUsage, cloudCover, panelEfficiency);
 		
-		System.out.print(profit);
+		//System.out.print(profit);
+	}
+	
+	@Test
+	public void exampleDataCalculation(){
+		
+		double latitude = 28;
+		double panelArea = 10;
+		double cloudCover = 0.2;
+		double tariff = 0.25378;
+		double energyCost = 0.25378;
+		double energyUsage = 6500;
+		double panelEfficiency = 0.25;
+		int simulationRange = 10;
+		double systemCost = 5000;
+		
+		calculator.Calculate(latitude, simulationRange, cloudCover, panelEfficiency, panelArea, energyCost, tariff, systemCost, energyUsage);
+		
+		System.out.println("Electricity generation (year): " + calculator.GetYearlyElectricityGeneration());
+		System.out.println("Electricity generation (simulation): " + calculator.GetElectricityGeneration());
+		System.out.println("Savings (year): " + calculator.GetYearlyProfit());
+		System.out.println("Savings (simulation): " + calculator.GetTotalProfit());
+		System.out.println("Return on investment after simulation period: " + calculator.GetROI());
+		System.out.println("Break even year: " + calculator.getBreakEvenYear());
+		
 	}
 	
 }

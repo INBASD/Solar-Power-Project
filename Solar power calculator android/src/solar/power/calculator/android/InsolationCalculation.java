@@ -14,8 +14,77 @@ public class InsolationCalculation {
 	
 	//At the lowest level of calculation, degrees are converted to radians using
 	// DegreesToRadians();
-	private int solarradiation = 1000;
-	private int dailySimulationSteps = 10;
+	private static int solarradiation = 1333;
+	private static int dailySimulationSteps = 10;
+	
+	double totalElectricityGeneration = 0;//electricity generation
+	double yearlyElectricityGeneration = 0;
+	double yearlyProfit = 0;//yearly profit
+	double ROI = 0;//return on investment after X years
+	double totalSimulationProfit = 0;
+	int breakEvenYear = 0;
+	
+	double GetElectricityGeneration(){
+		//returns the electricity generation of the system in KW
+		
+		return this.totalElectricityGeneration;
+	}
+	
+	double GetYearlyProfit(){
+		//returns the profit the system provides in a year
+		
+		return this.yearlyProfit;
+	}
+	
+	double GetROI(){
+		//returns the ROI
+		return this.ROI;
+	}
+	
+	double GetTotalProfit(){
+		//returns the variable that stores the total simulation data.
+		return this.totalSimulationProfit;
+	}
+	
+	int getBreakEvenYear(){
+		return this.breakEvenYear;
+	}
+	
+	double GetYearlyElectricityGeneration(){
+		return this.yearlyElectricityGeneration;
+	}
+	
+	//CALCULATE method
+	/*
+	 * This method accepts
+	 * 1) latitude
+	 * 2) simulation range
+	 * 3) average cloud cover
+	 * 4) solar panel efficiency
+	 * 5) solar panel area
+	 * 6) energy cost
+	 * 7) energy tarrif
+	 * 8) total system cost
+	 * 9) Energy usage
+	 * 
+	 * and updates the variables
+	 * 1) totalElectricityGeneration
+	 * 2) yearly profit
+	 * 3) ROI
+	 */
+	
+	public void Calculate(double latitude, int simulationRange, double cloudCover, double panelEfficiency, double panelArea, double energyCost, double energyTarrif, double systemCost, double energyUsage){
+		this.yearlyElectricityGeneration = TotalWattHours(latitude, cloudCover, panelArea, panelEfficiency);
+		this.totalElectricityGeneration = this.yearlyElectricityGeneration * simulationRange;
+		
+		this.yearlyProfit = this.TotalYearlyProfit(latitude, panelArea, energyCost, energyTarrif, energyUsage, cloudCover, panelEfficiency);
+		this.totalSimulationProfit = this.yearlyProfit * simulationRange;
+		
+		this.ROI = this.totalSimulationProfit / systemCost;
+		
+		this.breakEvenYear = (int) Math.floor(systemCost / this.yearlyProfit);
+		
+	}
 	
 	//given a location latitude, hour of day, and day of year (jan 1 = 1), 
 	// calculate the solar insolation at that instant.
@@ -201,20 +270,21 @@ public class InsolationCalculation {
 	 * //By Jack Williams, n5736153
 	 */
 	
-	public double TotalYearlyProfit(double latitude, double solarPanelArea, double energyCost, double tariff, double energyUsage, double cloudCoverPercentage){
-		double actualKWattHours = TotalWattHours(latitude, cloudCoverPercentage, solarPanelArea)/1000; //convert to kilowatt hours
-		double totalEnergyCost = energyUsage * energyCost;
-		double moneyEarnedFromProduction = actualKWattHours * tariff;
-		double profit = moneyEarnedFromProduction - totalEnergyCost;
+	public double TotalYearlyProfit(double latitude, double solarPanelArea, double energyCost, double tariff, double energyUsage, double cloudCoverPercentage, double panelEfficiency){
 		
-		return profit;
+		double actualKWattHours = TotalWattHours(latitude, cloudCoverPercentage, solarPanelArea, panelEfficiency)/1000; //convert to kilowatt hours
+		double newEnergyUsage = energyUsage - actualKWattHours;
+		double energyNotBought = energyUsage - newEnergyUsage;
+		double savings = energyNotBought * energyCost;
+		
+		return savings;
 	}
 	
 	//Given a latitude, cloud cover, and solar panel area, calculate the total number of WattHours produced by the panels.
 	
 	//By Jack Williams, n5736153
-	public double TotalWattHours(double latitude, double cloudCoverPercentage, double solarPanelArea){
-		double actualWattHours = (TotalSolarInsolation(latitude, 1) * cloudCoverPercentage * solarPanelArea);
+	public double TotalWattHours(double latitude, double cloudCoverPercentage, double solarPanelArea, double panelEfficiency){
+		double actualWattHours = (TotalSolarInsolation(latitude, 1) * (1 - cloudCoverPercentage) * solarPanelArea * (1 - panelEfficiency));
 		
 		return actualWattHours;
 	}
